@@ -8,6 +8,7 @@ use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use App\Rules\Matricule;
 
 class RegisterController extends Controller
 {
@@ -51,9 +52,8 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'nom' => ['required', 'string', 'max:255'],
-            'matricule' => ['required', 'string', 'max:255', 'unique:users'],
-            'mdp' => ['required', 'string', 'min:1', 'confirmed'],
-            'mdp_confirmation' => ['required'],
+            'matricule' => ['required', 'string', 'max:255', 'unique:users', new Matricule],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
             'email' => ['required', 'string', 'email', 'max:255'],
 
         ]);
@@ -70,11 +70,10 @@ class RegisterController extends Controller
         return User::create([
             'nom' => $data['nom'],
             'matricule' => $data['matricule'],
-            'mdp' => Hash::make($data['mdp']),
             'email' => $data['email'],
             'filiere' => $data['filiere'],
-            'privilege' => ' ',
-            
+            'password' => Hash::make($data['password']),
+            'privilege' => ' ',            
         ]);
          
     }

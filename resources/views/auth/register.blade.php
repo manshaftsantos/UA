@@ -38,31 +38,9 @@
                                 @enderror
                             </div>
                         </div>
-
-                        <div class="form-group row">
-                            <label for="mdp" class="col-md-4 col-form-label text-md-right">Securité</label>
-
-                            <div class="col-md-6">
-                                <input id="mdp" type="password" class="form-control @error('mdp') is-invalid @enderror" name="mdp" required autocomplete="new-mdp">
-
-                                @error('mdp')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="mdp2" class="col-md-4 col-form-label text-md-right">Confirmer securité</label>
-
-                            <div class="col-md-6">
-                                <input id="mdp2" type="password" class="form-control" name="mdp_confirmation" required autocomplete="new-mdp">
-                            </div>
-                        </div>
                         <div class="form-group row">
                             <label for="filiere" class="col-md-4 col-form-label text-md-right">filiere</label>
-                            
+
                             <div class="col-md-6">
                                 <select name="filiere" id="">
                                      @foreach ($filieres as $filiere)
@@ -76,6 +54,28 @@
 
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control" name="email" required autocomplete="new-mdp">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+
+                                @error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                             </div>
                         </div>
                         <div class="form-group row mb-0">
