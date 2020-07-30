@@ -50,13 +50,24 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+
+        $message =  [
+            'nom.required' => 'le champ nom est requis',
+            'nom.max' => 'votre nom de doit pas contenir plus de 255 caractères',
+            'matricule.unique' => 'ce matricule est deja utilisé',
+            'password.required' =>'le champ mot de passe est requis',
+            'password.min' => 'votre mot de passe doit contenir au moins 8 caractere',
+            'email.required' => 'le champ email est requis',
+            'email.email' => 'adresse email incorrecte'
+        ];
+
         return Validator::make($data, [
             'nom' => ['required', 'string', 'max:255'],
-            'matricule' => ['required', 'string', 'max:255', 'unique:users', new Matricule],
+            'matricule' => ['required', 'string', 'max:7', 'unique:users', new Matricule],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'email' => ['required', 'string', 'email', 'max:255'],
 
-        ]);
+        ],$message);
     }
 
     /**
@@ -73,8 +84,8 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'filiere' => $data['filiere'],
             'password' => Hash::make($data['password']),
-            'privilege' => ' ',            
+            'privilege' => ' ',
         ]);
-         
+
     }
 }
